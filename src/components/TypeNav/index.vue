@@ -75,7 +75,7 @@
 // import { log } from 'console';
 import { mapState } from "vuex";
 import { throttle } from "lodash";
-import { Console, log } from "console";
+// import { Console, log } from "console";
 export default {
   name: "TypeNav",
 
@@ -99,6 +99,7 @@ export default {
     }
   },
   computed: {
+    // 从仓库中获取数据，使用mapState从仓库中获取参数并解构
     ...mapState({
       categoryList: (state) => {
         return state.home.categoryList;

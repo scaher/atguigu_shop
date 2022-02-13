@@ -3,13 +3,18 @@ import { reqCategoryList, reqGetBannerList } from "@/api"
 // home模块小仓库
 const state = {
     // 初始化数据
-    categoryList : []
+    categoryList : [],
+    bannerList : [],
 }
 const mutations = {
     CATEGORYLIST(state,categoryList){
         state.categoryList = categoryList.data.slice(0,16)
 
+    },
+    GETBANNERLIST(stste,bannerList){
+        stste.bannerList = bannerList.data
     }
+
 }
 const actions = {
     // 通过api里面的接口函数获取三级联动数据
@@ -25,9 +30,14 @@ const actions = {
         }
     },
     // 获取首页轮播图的数据
-    async getBannerList(){
+    async getBannerList(context){
+        // console.log("aaa");
         let res = await reqGetBannerList()
         // console.log(res);
+        if(res.status === 200){
+            context.commit("GETBANNERLIST",res.data)
+        }
+
     }
 }
 

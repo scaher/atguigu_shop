@@ -3,12 +3,14 @@ import { reqCategoryList } from './api'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import 'swiper/css/swiper.css'
+
 
 // 三级联动组件，注册为全局组件
 import TypeNav from './components/TypeNav'
 
 // 引入mock  数据
-// import './mock/mockServer'
+import './mock/mockServer'
 
 console.log(reqCategoryList())
 // 
