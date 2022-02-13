@@ -104,7 +104,7 @@
 export default {
   name: "ListContainer",
   mounted() {
-    // this.$store.dispatch('getBannerList');
+    this.$store.dispatch('getBannerList');
   },
 };
 </script>

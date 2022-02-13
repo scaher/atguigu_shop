@@ -10,5 +10,5 @@ export const reqCategoryList = () => {
 }
 
 // 获取banner（轮播图接口）  从mock中获取
-// export const reqGetBannerList = () => mockRequest.get('/banner')
+export const reqGetBannerList = () => mockRequest.get('/banner')
 
