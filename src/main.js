@@ -12,6 +12,10 @@ import TypeNav from './components/TypeNav'
 // 引入mock  数据
 import './mock/mockServer'
 
+// 引入轮播图样式
+import 'swiper/css/swiper.css'
+
+
 console.log(reqCategoryList())
 // 
 Vue.component(TypeNav.name,TypeNav)

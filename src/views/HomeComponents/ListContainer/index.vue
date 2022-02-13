@@ -96,18 +96,37 @@
 
 <script>
 import { mapState } from "vuex";
-import Swiper from "swiper"
+import Swiper from "swiper";
 export default {
   name: "ListContainer",
   mounted() {
     this.$store.dispatch("getBannerList");
-    // var mySwiper = 
+    // var mySwiper =
+    setTimeout(() => {
+      var mySwiper = new Swiper(
+        document.getElementsByClassName("swiper-container"),
+        {
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          // 如果需要前进后退按钮
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+
+          },
+        }
+      );
+    }, 1000);
   },
   computed: {
     ...mapState({
       bannerList: (state) => state.home.bannerList,
     }),
   },
+  updated() {},
 };
 </script>
 
