@@ -1,18 +1,22 @@
 // 引入获取三级联动数据的函数
-import { reqCategoryList, reqGetBannerList } from "@/api"
+import { reqCategoryList, reqGetBannerList, reqGetFloorList } from "@/api"
 // home模块小仓库
 const state = {
     // 初始化数据
     categoryList : [],
     bannerList : [],
+    floorList : [],
 }
 const mutations = {
     CATEGORYLIST(state,categoryList){
         state.categoryList = categoryList.data.slice(0,16)
 
     },
-    GETBANNERLIST(stste,bannerList){
-        stste.bannerList = bannerList.data
+    GETBANNERLIST(state,bannerList){
+        state.bannerList = bannerList.data
+    },
+    GETFLOORLIST(state,floorList){
+        state.floorList = floorList.data
     }
 
 }
@@ -38,6 +42,13 @@ const actions = {
             context.commit("GETBANNERLIST",res.data)
         }
 
+    },
+    // 获取首页floor数据
+    async getFloorList(context){
+        let res = await reqGetFloorList()
+        if(res.status === 200){
+            context.commit("GETFLOORLIST",res.data)
+        }
     }
 }
 

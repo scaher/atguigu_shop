@@ -12,3 +12,12 @@ export const reqCategoryList = () => {
 // 获取banner（轮播图接口）  从mock中获取
 export const reqGetBannerList = () => mockRequest.get('/banner')
 
+// 获取floor数据  从mock中获取
+export const reqGetFloorList = () => mockRequest.get('/floor')
+
+// 获取搜索模块数据
+export const reqGetSearchInfo = (params) => requests({
+    url:'/list',
+    method: 'post',
+    data:params
+})

@@ -9,6 +9,9 @@ import 'swiper/css/swiper.css'
 // 三级联动组件，注册为全局组件
 import TypeNav from './components/TypeNav'
 
+//轮播图组件，注册为全局组件
+import Carsouel from './components/Carsouel'
+
 // 引入mock  数据
 import './mock/mockServer'
 
@@ -19,6 +22,7 @@ import 'swiper/css/swiper.css'
 console.log(reqCategoryList())
 // 
 Vue.component(TypeNav.name,TypeNav)
+Vue.component(Carsouel.name,Carsouel)
 
 Vue.config.productionTip = false
 

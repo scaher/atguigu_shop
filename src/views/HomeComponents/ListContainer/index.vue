@@ -3,7 +3,7 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <div class="swiper-container" id="mySwiper">
+        <!-- <div class="swiper-container" ref="mySwiper" >
           <div class="swiper-wrapper">
             <div
               class="swiper-slide"
@@ -13,13 +13,15 @@
               <img :src="carousel.imgUrl" />
             </div>
           </div>
-          <!-- 如果需要分页器 -->
+         
           <div class="swiper-pagination"></div>
 
-          <!-- 如果需要导航按钮 -->
+          
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
-        </div>
+        </div> -->
+
+        <Carsouel :list="bannerList"/>
       </div>
       <div class="right">
         <div class="news">
@@ -102,24 +104,37 @@ export default {
   mounted() {
     this.$store.dispatch("getBannerList");
     // var mySwiper =
-    setTimeout(() => {
-      var mySwiper = new Swiper(
-        document.getElementsByClassName("swiper-container"),
-        {
-          loop: true,
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
-          // 如果需要前进后退按钮
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+    // setTimeout(() => {
 
-          },
-        }
-      );
-    }, 1000);
+    // }, 1000);
+  },
+  watch: {
+    // 监听bannerList数据变化
+    // bannerList: {
+    //   handler(newValue, oldValue) {
+    //     // 监听到BannerList发生变化执行
+    //     // 将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。
+    //     // 它跟全局方法 Vue.nextTick 一样，不同的是回调的 this 自动绑定到调用它的实例上。
+    //     this.$nextTick(() => {
+    //       var mySwiper = new Swiper(
+    //         this.$refs.mySwiper,
+    //         {
+    //           loop: true,
+    //           pagination: {
+    //             el: ".swiper-pagination",
+    //             clickable: true,
+    //           },
+    //           // 如果需要前进后退按钮
+
+    //           navigation: {
+    //             nextEl: ".swiper-button-next",
+    //             prevEl: ".swiper-button-prev",
+    //           },
+    //         }
+    //       );
+    //     });
+    //   },
+    // },
   },
   computed: {
     ...mapState({
