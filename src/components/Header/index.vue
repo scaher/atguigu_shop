@@ -74,14 +74,22 @@ export default {
       // 2.模板字符串
       // this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`);
       // 3.对象写法(要给路由命名)
-      let location = {name:"Search",params:{keyword:this.keyword}}
-      if(this.$route.query){
-        location.query = this.$route.query
+      let location = { name: "Search", params: { keyword: this.keyword } };
+      if (this.$route.query) {
+        location.query = this.$route.query;
       }
-      this.$router.push(location)
-
-      
+      this.$router.push(location);
     },
+  },
+  mounted() {
+    // 通过全局事件总线清除关键字
+    this.$bus.$on("clear", () => {
+      this.keyword = "";
+    });
+  },
+  beforeDestroy() {
+    // 解绑所需要的事件
+    this.$bus.$off("hello");
   },
 };
 </script>

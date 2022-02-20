@@ -37,7 +37,12 @@
     name: 'SearchSelector',
     computed:{
       ...mapGetters(['trademarkList','attrsList'])
-    }
+    },
+    methods: {
+      tradeMatkHanlder(){
+        
+      }
+    },
   }
 </script>
 

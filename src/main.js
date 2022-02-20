@@ -31,6 +31,10 @@ new Vue({
   render: h => h(App),
   // 注册仓库，组件实例对象中会出现一个$store的属性
   store,
+  beforeCreate(){
+    // 创建全局事件总线
+    Vue.prototype.$bus = this
+  }
 
 }).$mount('#app')
 // 将路由组件的引入通过钩子挂载到app组件中

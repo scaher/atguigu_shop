@@ -11,10 +11,11 @@
             </li>
           </ul>
           <ul class="fl sui-tag">
-            <li class="with-x">手机</li>
-            <li class="with-x">iphone<i>×</i></li>
-            <li class="with-x">华为<i>×</i></li>
-            <li class="with-x">OPPO<i>×</i></li>
+            <!-- <li class="with-x">手机</li> -->
+            <!-- 分类的面包屑 -->
+            <li class="with-x" v-if="searchParams.categoryName">{{searchParams.categoryName}}<i @click="removeCategoryName">×</i></li>
+            <!-- 关键字的面包屑 -->
+            <li class="with-x" v-if="searchParams.keyword">{{searchParams.keyword}}<i @click="removeKeyword">×</i></li>
           </ul>
         </div>
 
@@ -166,6 +167,8 @@ export default {
   },
   mounted() {
     this.getData(this.searchParams);
+    // 参数置空
+      this.paramsDelete()
   },
   computed: {
     // ...mapState({
@@ -180,7 +183,50 @@ export default {
     getData(searchParams) {
       this.$store.dispatch("getSearchInfo", searchParams);
     },
+    paramsDelete(){
+      // 如果置空，仍为服务器发送参数
+      // 置undefined就不会向服务器发送信息
+      // 节省网络
+      this.searchParams.category1Id = undefined
+      this.searchParams.category2Id = undefined
+      this.searchParams.category3Id = undefined
+    },
+    // 删除分类
+    removeCategoryName(){
+      this.searchParams.categoryName = undefined
+      this.paramsDelete()
+      // this.$router.push({name:'Search',params:this.$route.params})
+      this.getData(this.searchParams)
+      // 地址栏也需要修改
+      // 进行路由跳转（自己跳自己）
+      // 本意删除query参数，如果路径当中出现params参数应该携带
+      if(this.$route.params){
+        this.$router.push({name:'Search',params:this.$route.params})
+      }
+      
+    },
+    // 删除关键字
+    removeKeyword(){
+      this.searchParams.keyword = undefined
+      this.getData(this.searchParams)
+      this.$bus.$emit('clear')
+      if(this.$route.query){
+        this.$router.push({name:'Search',params:this.$route.query})
+      }
+    }
   },
+  watch:{
+    // 监听路由信息是否发生变化
+    $route(newValue,oldValue){
+      // 再次发送请求后要重新整理参数
+      Object.assign(this.searchParams,this.$route.query,this.$route.params)
+      // 再次发送ajax请求
+      this.getData(this.searchParams)
+      // 参数置空
+      this.paramsDelete()
+
+    }
+  }
 };
 </script>
 
