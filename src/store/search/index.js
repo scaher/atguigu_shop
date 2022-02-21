@@ -22,7 +22,10 @@ const actions = {
 const getters = {
     // 里面函数内部有形参，是当前仓库的state
     goodsList(state){
+        // console.log('bbbbb')
+        // console.log(state.searchList.data.goodsList)
         return state.searchList.data.goodsList||[]
+
     },
     trademarkList(state){
         return state.searchList.data.trademarkList||[]

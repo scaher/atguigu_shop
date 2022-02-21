@@ -9,5 +9,8 @@ module.exports = {
                 // pathRewrite:{'^/api':''}
             }
         }
+    },
+    configureWebpack:{
+        devtool:'source-map'
     }
 }

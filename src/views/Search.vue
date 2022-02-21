@@ -50,7 +50,7 @@
           </div>
           <div class="goods-list">
             <ul class="yui3-g">
-              <li class="yui3-u-1-5" v-for="good in goodsList" :key="good.id">
+              <li class="yui3-u-1-5"  v-for="good in goodsList" :key="good.id">
                 <div class="list-wrap">
                   <div class="p-img">
                     <a href="item.html" target="_blank"
@@ -127,6 +127,7 @@
 <script>
 import SearchSelector from "./SearchSelector/SearchSelector";
 import { mapGetters, mapState } from "vuex";
+import { log } from 'console';
 export default {
   name: "Search",
   data() {
@@ -154,6 +155,7 @@ export default {
         // 品牌
         trademark: "",
       },
+      // goodsList:{}
     };
   },
 
@@ -161,14 +163,20 @@ export default {
     SearchSelector,
   },
   // 当组件挂载完毕之前执行一次
-  beforeMount() {
+  created() {
     // 合并对象
     Object.assign(this.searchParams,this.$route.query,this.$route.params)
+    this.getData(this.searchParams);
+    
   },
   mounted() {
-    this.getData(this.searchParams);
+    // ...mapGetters(["goodsList"])
+    
+    
+    // console.log('111')
+    // console.log(goodsList);
     // 参数置空
-      this.paramsDelete()
+    this.paramsDelete()
   },
   computed: {
     // ...mapState({
